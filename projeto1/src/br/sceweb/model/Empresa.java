@@ -9,17 +9,26 @@ import java.util.InputMismatchException;
  *
  */
 public class Empresa {
+
 	String cnpj;
 	String nomeDaEmpresa;
 	String nomeFantasia;
 	String endereco;
 	String telefone;
 
+	/**
+	 * Propriedade GET do CNPJ
+	 * @return cnpj cnpj da empresa
+	 */
 	public String getCnpj() {
 		return cnpj;
 	}
 	
-	
+	/**
+	 * Propriedade SET do CNPJ que verifica se ele e valido
+	 * @param cnpj cnpj da empresa
+	 * @return CNPJ ou uma mensagem de erro caso ele seja invalido
+	 */
 	public String setCnpj(String cnpj) {
 		String msg="";
 		if(isValido(cnpj)){
@@ -27,42 +36,97 @@ public class Empresa {
 		}else{
 			msg = "CNPJ invalido.";
 		}
+		if(isBranco(cnpj)){
+			msg = "CNPJ invalido.";
+		}else{
+			this.cnpj = cnpj;
+		}
 		return msg;
 	}
 
+	/**
+	 * Propriedade GET do nome da empresa
+	 * @return nomeDaEmpresa nome da empresa
+	 */
 	public String getNomeDaEmpresa() {
 		return nomeDaEmpresa;
 	}
 
+	/**
+	 * Propriedade SET do nome da empresa
+	 * @param nomeDaEmpresa nome da empresa
+	 */
 	public void setNomeDaEmpresa(String nomeDaEmpresa) {
 		this.nomeDaEmpresa = nomeDaEmpresa;
 	}
 
+	/**
+	 * Propriedade get do nome fantasia
+	 * @return nomeFantasia nome fantasia da empresa
+	 */
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
+	/**
+	 * Propriedade set do nome fantasia que verifica se ele e valido
+	 * @param nomeFantasia nome fantasia da empresa
+	 * @return nomeFantasia nome fantasia da empresa ou mensagem de erro caso invalido
+	 */
+	public String setNomeFantasia(String nomeFantasia) {
+		String msg="";
+		if(isBranco(nomeFantasia)){
+			msg = "Nome Fantasia invalido.";
+		}
+		else{
+			this.nomeFantasia = nomeFantasia;
+		}
+		return msg;
 	}
 
+	/**
+	 * Propriedade get do endereco
+	 * @return endereco endereco da empresa
+	 */
 	public String getEndereco() {
 		return endereco;
 	}
 
+	/**
+	 * Propriedade set do endereco
+	 * @param endereco endereco da empresa
+	 */
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
+	/**
+	 * Propriedade get do telefone
+	 * @return telefone telefone da empresa
+	 */
 	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	/**
+	 * Propriedade SET do telefone que verifica se ele e valido
+	 * @param telefone telefone da empresa
+	 * @return  telefone da empresa ou mensagem de erro caso invalido
+	 */
+	public String setTelefone(String telefone) {
+		String msg="";
+		if(isBranco(telefone)){
+			msg = "Telefone invalido.";	
+		}
+		else{
+			this.telefone = telefone;
+		}
+		return msg;
 	}
-	/*
-	 * valida o cnpj
+	/**
+	 * Metodo que valida o cnpj
+	 * @param cnpj cnpj da empresa
+	 * @return true se for valido ou false se for invalido
 	 */
 	public boolean isValido(String cnpj) {
 		char dig13, dig14; 
@@ -118,6 +182,20 @@ public class Empresa {
 			erro.printStackTrace();
 	        return(false);
 	    }
+	}
+	
+	/**
+	 * Metodo que verifica se uma String esta em branco
+	 * @param txt String a ser verificada
+	 * @return true
+	 */
+	public boolean isBranco(String txt){
+		if(txt.equals("")){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }
